@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Auth from '../../Auth/Auth'
 
-class LoginPage extends Component {
+const auth = new Auth();
+
+export class LoginPage extends Component {
     render() {
-      return (
-        <div>
-
-         Login Page
-
-        </div>
-      );
+      auth.login();
+      return(<div></div>);
     }
   }
   
-  export default LoginPage;
+  //export default LoginPage;

@@ -7,8 +7,8 @@ export default class Auth{
 
     auth0 = new auth0.WebAuth({
         domain: 'rycom.auth0.com',
-        clientID: 'J-E513a4SMPadmmAgxRA7zZS3fXvnsE7',
-        redirectUri: 'http://localhost:3000/callback',
+        clientID: 'jw6sTXBT3wAGOWh95kvFMUjS6uvW2VCz',
+        redirectUri: 'http://localhost:3000/dashboard',
         responseType : 'token id_token',
         scope : 'openid'
     });
@@ -19,7 +19,7 @@ export default class Auth{
         this.handleAuthentication =this.handleAuthentication.bind(this);
         this.isAuthenticated =this.isAuthenticated (this);
         this.getAccessToken =this.getAccessToken (this);
-        this.getAccessToken =this.getAccessToken (this);
+        this.getIdToken  =this.getIdToken(this);
         this.renewSession =this.renewSession (this);
     }
 
@@ -32,7 +32,7 @@ export default class Auth{
             if(results &&results.accessToken && results.idToken){
                 this.setSession(results);
             } else if(err){
-                history.replace('/dashboard');
+               // history.replace('/dashboard');
 
             }
         });
@@ -51,12 +51,12 @@ export default class Auth{
 
         let expiresAt =(results.expiresIn *1000)+ new Date().getDate();
         
-        this.accessToken = authResult.accessToken;
-        this.idToken = authResult.idToken;
+        this.accessToken = results.accessToken;
+        this.idToken = results.idToken;
         this.expiresAt = expiresAt;
 
     // navigate to the home route
-        history.replace('/dashboard');
+        //history.replace('/dashboard');
     }
 
     renewSession(){
@@ -75,7 +75,7 @@ export default class Auth{
         this.expiresAt=0;
 
         localStorage.removeItem('LoggedIn')
-        history.replace('/login');
+       // history.replace('/login');
     }
 
     isAuthenticated(){

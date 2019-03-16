@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import { Route, Link } from 'react-router-dom';
+import {LoginPage} from './components/Pages/Login/LoginPage'
+import {DashboardPage} from './components/Pages/Dashboard/DashboardPage'
 
 class App extends Component {
+
+
   render() {
     return (
-      <div className="App">
-       <Header/>
-       this is the body
-       <Footer />
-      </div>
+      <div>
+                <Route path="/login" component={LoginPage}></Route>
+                <Route path="/dashboard" component={DashboardPage}></Route>
+
+
+            </div>
     );
   }
 }
